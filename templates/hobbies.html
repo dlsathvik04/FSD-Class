@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hobbies</title>
+</head>
+
+<body>
+    <h2>Fill in your hobbies</h2>
+    <form action="/hobbies/" method="post">
+        {% csrf_token %}
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name">
+        <br>
+        <br>
+        <label for="phone">Phone Number</label>
+        <input type="text" name="phone" id="phone">
+        <br>
+        <br>
+        <label for="hobbies">What are your Hobbies?</label>
+        <br>
+        <textarea name="hobbies" id="hobbies" cols="50" rows="10"></textarea>
+        <br>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+    <br>
+    <hr>
+    <br>
+
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Phone Number</th>
+            <th>Hobbies</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        {% for hobby in hobbies%}
+        <tr>
+            <td>{{hobby.name}} </td>
+            <td>{{hobby.phone}} </td>
+            <td>{{hobby.hobbies}}</td>
+            <td><a href="{% url 'edit' hobby.pk %}">edit</a></td>
+            <td><a href="{% url 'delete' hobby.pk %}">delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+
+</body>
+
+</html>
